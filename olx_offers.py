@@ -52,7 +52,7 @@ def get_all_offers(url):
         print('index: {:02}, ads: {:02}'.format(index, len(urls)))
         
     # items per page may be wrong, but total unique is correct
-    total_urls = list(set(total_urls))
+    total_urls = sorted(set(total_urls))
     return total_urls
     
     
@@ -63,14 +63,18 @@ def extract_data_from_ads(total_urls, df):
         spawn tasks for asyncio and wait for execution
     """
     for key, single_ad_url in enumerate(total_urls):
-        print('{:03}) {}'.format(key, single_ad_url))
-        if (df['url'] == single_ad_url).any():
-            print('    [green]\[*] already exists')
-            continue
-        else:
-            price, latitude, longitude = get_details_from_single_offer(single_ad_url)
-            print('    {} [PLN], geo: ({}, {})'.format(price, latitude, longitude))
-            df.loc[len(df)] = [single_ad_url, price, latitude, longitude]
+        try:
+            print('{:03}) {}'.format(key, single_ad_url))
+            if (df['url'] == single_ad_url).any():
+                print('    [green]\[*] already exists')
+                continue
+            else:
+                price, latitude, longitude = get_details_from_single_offer(single_ad_url)
+                print('    {} [PLN], geo: ({}, {})'.format(price, latitude, longitude))
+                df.loc[len(df)] = [single_ad_url, price, latitude, longitude]
+        except KeyboardInterrupt:
+            print('[red]\[x] broken by user')
+            break
     return df
     
     
@@ -114,7 +118,8 @@ def get_details_from_single_offer(url):
         price_container = soup.find('div', {'data-testid': "ad-price-container"})
         price = price_container.h3.text
         # you can directly access h3 tag, but it may change in the future
-        price = int(''.join(price.rstrip('zł ').split()))
+        # ValueError: invalid literal for int() with base 10: '121034,02'
+        price = int(float(''.join(price.rstrip('zł ').replace(',', '.').split())))
         
         # ******** geolocation ********
         config_script = soup.find('script', {'id': "olx-init-config"})
