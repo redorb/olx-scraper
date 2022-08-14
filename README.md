@@ -62,10 +62,11 @@ http://127.0.0.1:5000/
 ![image](screenshot2.png)
 
 
-## few comments, FAQ
+## few comments, QA
 
  - dont ask me why OpenStreetMaps files are static. I have no idea
  - don't ask me why style refers to style.css from static/theme/default. Have no idea too
  - why cli script requests each url one by one? because it was easier to develop. It could be fixed using asyncio or threading
  - can you feed olx url from browser, not from commandline? if any develop will be made I will do it
  - why there are many advertisments and only few markers on the map? because many advertisments have default location, which results of drawing them in the same point. I could think of change it to draw markers in slightly different location in such cases
+ - versions 0.1.1 and above provide errors handling, keyboard interrupt and requests caching
