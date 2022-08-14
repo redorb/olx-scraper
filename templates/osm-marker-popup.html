@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+        <title>OpenLayers 2 OSM and Google Example</title>
+        <!-- <link rel="stylesheet" href="./theme/default/style.css" type="text/css"> -->
+        <!-- <script src="OpenLayers.js"></script> -->
+        <!-- <script src="osm-marker-popup.js"></script> -->
+        
+        <!-- <link rel="stylesheet" type="text/css", href="{{url_for('static', filename='style.css')}}"> -->
+        <script src="{{url_for('static', filename='OpenLayers.js')}}"></script>
+        <script src="{{url_for('static', filename='osm-marker-popup.js')}}"></script>
+        
+    </head>
+    <body onload="init()">
+        
+        
+        <header>
+            <div class="row">
+                <div class="center-bar"><hr><h1>HEADER</h1><hr></div>
+            </div>
+        </header>
+        
+        
+        <main>
+            <div class="row">
+            
+              <div class="column-left">
+                <div class="center-bar"><h2>MAIN MAP</h2>
+                    <div id="map" class="smallmap"></div>
+                </div>
+              </div>
+              
+              
+              <!-- <div class="column-right"></div> -->
+              
+              <div class="column-right">
+                <div class="center-bar"><h2>ORIGINAL ADS</h2></div>
+                <hr>
+                <div id="ad-info" class="center-bar">
+                </div>
+              </div>
+              
+            </div>
+        </main>
+        
+        
+        <footer>
+            <div class="row">
+                <div class="center-bar"><hr><h1>FOOTER</h1><hr></div>
+            </div>
+        </footer>
+            
+    </body>
+</html>
