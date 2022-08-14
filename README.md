@@ -59,6 +59,7 @@ http://127.0.0.1:5000/
 ## browser view
 
 ![image](screenshot.png)
+![image](screenshot2.png)
 
 
 ## few comments, FAQ
