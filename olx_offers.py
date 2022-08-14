@@ -43,7 +43,7 @@ def get_all_offers(url):
         else:
             current_page = '{}page={}'.format(marker, index)
             url_page = url + current_page
-        print('{}) {}'.format(index, url_page))
+        print('{}) {}'.format(index+1, url_page))
         urls = get_offers_from_single_page(url_page)
         if not urls:
             break
@@ -69,12 +69,21 @@ def extract_data_from_ads(total_urls, df):
                 print('    [green]\[*] already exists')
                 continue
             else:
-                price, latitude, longitude = get_details_from_single_offer(single_ad_url)
+                details = get_details_from_single_offer(single_ad_url)
+                if not details:
+                    continue
+                price, latitude, longitude = details
                 print('    {} [PLN], geo: ({}, {})'.format(price, latitude, longitude))
                 df.loc[len(df)] = [single_ad_url, price, latitude, longitude]
+                
         except KeyboardInterrupt:
             print('[red]\[x] broken by user')
             break
+            
+        except Exception as err:
+            print('[red]\[x] error catched: {}'.format(err))
+            continue
+            
     return df
     
     
@@ -112,10 +121,22 @@ def get_details_from_single_offer(url):
     res = requests.get(url, headers=headers)
     soup = bs.BeautifulSoup(res.text, 'lxml')
     
+    # breakpoint()  # DEBUG
+    # it will always fail
+    # antipattern = 'To ogłoszenie nie jest już dostępne'
+    # if antipattern in res.text:
+        # print('[red]\[x] not available: {}'.format(antipattern))
+        # return False
+        
     price, latitude, longitude = (0, 0, 0)
     if url.startswith('https://www.olx.pl'):
         # ******** price ********
         price_container = soup.find('div', {'data-testid': "ad-price-container"})
+        if price_container is None:
+            # no div with price
+            # AttributeError: 'NoneType' object has no attribute 'h3'
+            return False
+            
         price = price_container.h3.text
         # you can directly access h3 tag, but it may change in the future
         # ValueError: invalid literal for int() with base 10: '121034,02'
@@ -160,16 +181,21 @@ def get_details_from_single_offer(url):
     else:
         # unknown
         pass
+        
+    if not any((price, latitude, longitude)):
+        return False
+        
     return price, latitude, longitude
     
     
 if __name__ == "__main__":
     # ******** parsing args ********
-    version = '0.1.0'
+    version = '0.1.1'
     title = Panel.fit(
         "[blue]olx-advertisments [red]scraper [gold1]version: {}".format(version),
         safe_box=True,
-        border_style="green")
+        border_style="green",
+        style="on black")
     print(title)
     description = 'tool for scraping olx advertisments and show it on map in browser'
     parser = argparse.ArgumentParser(description=description)
