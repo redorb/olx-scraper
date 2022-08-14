@@ -29,7 +29,7 @@ run cli app and wait for execution
 ```
 python olx_offers.py <olx-url>
 # example
-python olx_offers.py "https://www.olx.pl/d/nieruchomosci/mieszkania/wynajem/sosnowiec/"
+python olx_offers.py "https://www.olx.pl/d/nieruchomosci/mieszkania/wynajem/sosnowiec/?search%5Bfilter_enum_rooms%5D%5B0%5D=one"
 ```
 
 run flask app
@@ -55,6 +55,10 @@ open link in browser
 ```
 http://127.0.0.1:5000/
 ```
+
+## browser view
+
+![image](screenshot.png)
 
 
 ## few comments, FAQ

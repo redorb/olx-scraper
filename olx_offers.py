@@ -181,6 +181,7 @@ if __name__ == "__main__":
         
     # ******** scraping ********
     total_urls = get_all_offers(olx_url)
+    print('total urls number: {}'.format(len(total_urls)))
     df = extract_data_from_ads(total_urls, df)
     df.to_csv(data_file)
     
