@@ -32,7 +32,9 @@ python olx_offers.py <olx-url>
 python olx_offers.py "https://www.olx.pl/d/nieruchomosci/mieszkania/wynajem/sosnowiec/?search%5Bfilter_enum_rooms%5D%5B0%5D=one"
 ```
 
-run flask app
+---
+
+run flask app (1st way)
 
 ```
 # https://flask.palletsprojects.com/en/1.1.x/cli/
@@ -56,11 +58,19 @@ open link in browser
 http://127.0.0.1:5000/
 ```
 
-## browser view
+---
+
+run flask app (2nd way)
+
+```
+python app.py
+# wait one second for app to open in browser
+```
+
+## browser views
 
 ![image](screenshot.png)
 ![image](screenshot2.png)
-
 
 ## few comments, QA
 
