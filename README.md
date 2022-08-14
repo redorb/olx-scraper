@@ -5,6 +5,7 @@ olx flats for rent advertisments scraper. For educational purposes only
 
 ```
 git clone https://github.com/redorb/olx-scraper
+cd olx-scraper
 python -m venv venv
 .\venv\Scripts\Activate.ps1  # on windows
 source venv/bin/activate  # on linux
@@ -15,7 +16,7 @@ dependencies
 pip install -r requirements.txt
 ```
 
-alternatively you can install type:
+alternatively you can type:
 
 ```
 pip install lxml requests pandas rich beautifulsoup4 Flask
@@ -23,7 +24,7 @@ pip install lxml requests pandas rich beautifulsoup4 Flask
 
 ## usage
 
-run cli app
+run cli app and wait for execution
 
 ```
 python olx_offers.py <olx-url>
@@ -58,7 +59,7 @@ http://127.0.0.1:5000/
 
 ## few comments, FAQ
 
- - dont ask my why OpenStreetMaps files are static. I have no idea
- - don't ask my why style.css is inside static/theme/default. Have no idea too
- - why it requests each url one by one? because it was easier to develop. It could be fixed using asyncio or threading
+ - dont ask me why OpenStreetMaps files are static. I have no idea
+ - don't ask me why style refers to style.css from static/theme/default. Have no idea too
+ - why cli script requests each url one by one? because it was easier to develop. It could be fixed using asyncio or threading
  - can you feed olx url from browser, not from commandline? if any develop will be made I will do it
