@@ -80,3 +80,4 @@ python app.py
  - can you feed olx url from browser, not from commandline? if any develop will be made I will do it
  - why there are many advertisments and only few markers on the map? because many advertisments have default location, which results of drawing them in the same point. I could think of change it to draw markers in slightly different location in such cases
  - versions 0.1.1 and above provide errors handling, keyboard interrupt and requests caching
+ - could think of scraping also advertisment upload date and then make some sort of filter from browser view
