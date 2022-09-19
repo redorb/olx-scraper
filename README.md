@@ -3,7 +3,7 @@ olx flats for rent advertisments scraper. For educational purposes only
 
 ## install
 
-```
+```bash
 git clone https://github.com/redorb/olx-scraper
 cd olx-scraper
 python -m venv venv
@@ -12,21 +12,19 @@ source venv/bin/activate  # on linux
 ```
 
 dependencies
-```
+```bash
 pip install -r requirements.txt
 ```
 
 alternatively you can type:
-
-```
+```bash
 pip install lxml requests pandas rich beautifulsoup4 Flask
 ```
 
 ## usage
 
 run cli app and wait for execution
-
-```
+```bash
 python olx_offers.py <olx-url>
 # example
 python olx_offers.py "https://www.olx.pl/d/nieruchomosci/mieszkania/wynajem/sosnowiec/?search%5Bfilter_enum_rooms%5D%5B0%5D=one"
@@ -35,8 +33,7 @@ python olx_offers.py "https://www.olx.pl/d/nieruchomosci/mieszkania/wynajem/sosn
 ---
 
 run flask app (1st way)
-
-```
+```bash
 # https://flask.palletsprojects.com/en/1.1.x/cli/
 
 # Unix Bash
@@ -52,17 +49,24 @@ $env:FLASK_APP = "app"
 flask run
 ```
 
-open link in browser
-
+if errors occurs
+```bash
+Fatal error in launcher: Unable to create process using(...) python.exe
+# upgrade pip
+# https://stackoverflow.com/questions/37220055/pip-fatal-error-in-launcher-unable-to-create-process-using
+python -m pip install --upgrade pip
 ```
+
+
+open link in browser
+```bash
 http://127.0.0.1:5000/
 ```
 
 ---
 
 run flask app (2nd way)
-
-```
+```bash
 python app.py
 # wait one second for app to open in browser
 ```
